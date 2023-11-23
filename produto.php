@@ -1,19 +1,24 @@
 <?php 
 include "header.php";
-include "dados.php";
+include "config.php";
 
-$id = $_GET["id"];//Esse id vem da URL produto.php?id=2
-//print_r($id);exit;
+$id = $_GET["id"];
+$sql = "SELECT * FROM produto WHERE id = $id";
+$consulta = $PDO->prepare($sql);
+$consulta->execute();
+
+$produtos = $consulta->fetch(PDO::FETCH_ASSOC); 
+
 ?>
 
 <main>
     <div class="grid-2">
         <div class="coluna">
-            <img src="imagens/<?=$produtos[$id]["imagem"]?> " alt="<?=$produtos[$id]["nome"]?>">
+            <img src="imagens/<?=$produtos["imagem"]?> " alt="<?=$produtos["nome"]?>">
         </div>
         <div class="coluna">
-            <h2><?=$produtos[$id]["nome"]?></h2>
-            <p>R$ <?=$produtos[$id]["valor"]?></p>
+            <h2><?=$produtos["nome"]?></h2>
+            <p>R$ <?=$produtos["valor"]?></p>
         </div>
         
     </div>

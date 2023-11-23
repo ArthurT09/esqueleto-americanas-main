@@ -1,5 +1,15 @@
 <?php 
 include "header.php";
+include "config.php";
+
+$nome = $_POST["name"];
+$email = $_POST["email"];
+$mensagem = $_POST["mensagem"];
+
+$sql = "INSERT INTO 'contato'('nome', 'email', 'mensagem') values ('$nome', '$email', '$mensagem')";
+
+$inserir = $PDO->prepare($sql);
+$inserir->execute();
 ?>
 
 <main>

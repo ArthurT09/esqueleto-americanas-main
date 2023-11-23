@@ -1,6 +1,12 @@
 <?php
 include "header.php";
-include "dados.php";
+include "config.php";
+$sql = " select * FROM produto";
+$consulta = $PDO->prepare($sql);
+$consulta->execute();
+
+$produtos = $consulta->fetchAll(PDO::FETCH_ASSOC); 
+
 ?>
 
 <main>
